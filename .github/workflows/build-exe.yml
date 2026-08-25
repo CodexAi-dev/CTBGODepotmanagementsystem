@@ -72,11 +72,41 @@ jobs:
     
     - name: Download Launch4j
       run: |
-        $url = "https://sourceforge.net/projects/launch4j/files/launch4j-3/launch4j-3.50-win64.zip/download"
-        $output = "launch4j.zip"
-        Invoke-WebRequest -Uri $url -OutFile $output
-        Expand-Archive -Path $output -DestinationPath .
-        Remove-Item $output
+        @'
+        <project xmlns="http://maven.apache.org/POM/4.0.0">
+          <modelVersion>4.0.0</modelVersion>
+          <groupId>local.build</groupId>
+          <artifactId>launch4j-runner</artifactId>
+          <version>1.0</version>
+          <dependencies>
+            <dependency>
+              <groupId>net.sf.launch4j</groupId>
+              <artifactId>launch4j</artifactId>
+              <version>3.50</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sf.launch4j</groupId>
+              <artifactId>launch4j</artifactId>
+              <version>3.50</version>
+              <classifier>core</classifier>
+            </dependency>
+            <dependency>
+              <groupId>net.sf.launch4j</groupId>
+              <artifactId>launch4j</artifactId>
+              <version>3.50</version>
+              <classifier>workdir-win32</classifier>
+            </dependency>
+          </dependencies>
+        </project>
+        '@ | Out-File -FilePath launch4j-pom.xml -Encoding UTF8
+        Remove-Item launch4j-lib -Recurse -Force -ErrorAction SilentlyContinue
+        .\mvnw.cmd -f launch4j-pom.xml dependency:copy-dependencies -DoutputDirectory=launch4j-lib -DincludeScope=runtime
+        $launch4jJars = Get-ChildItem launch4j-lib -Filter "*.jar"
+        if (-not $launch4jJars) {
+          Write-Host "ERROR: Launch4j artifacts were not downloaded"
+          exit 1
+        }
+        $launch4jJars | Select-Object Name, Length
     
     - name: Create Launch4j Config
       run: |
@@ -122,9 +152,9 @@ jobs:
           exit 1
         }
         
-        # Run Launch4j
-        $result = & .\launch4j\launch4jc.exe launch4j-config.xml
-        Write-Host "Launch4j output: $result"
+        # Run the official Launch4j compiler from Maven Central artifacts
+        $launch4jClasspath = (Get-ChildItem launch4j-lib -Filter "*.jar" | ForEach-Object FullName) -join ";"
+        java -cp $launch4jClasspath net.sf.launch4j.Main launch4j-config.xml
         
         # Check if exe was created
         if (-not (Test-Path "target/CTBDepotManagement.exe")) {
