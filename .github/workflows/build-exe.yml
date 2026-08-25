@@ -133,13 +133,6 @@ jobs:
             <jdkPreference>preferJre</jdkPreference>
             <runtimeBits>64</runtimeBits>
           </jre>
-          <messages>
-            <startupErr>An error occurred while starting the application.</startupErr>
-            <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
-            <jreVersionErr>The current version of Java on your computer is too old for this application. Please install Java 21 or later.</jreVersionErr>
-            <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
-            <instanceAlreadyExistsMsg>An application instance is already running. Only one instance of the application can run at a time.</instanceAlreadyExistsMsg>
-          </messages>
         </launch4jConfig>
         '@ | Out-File -FilePath launch4j-config.xml -Encoding UTF8
     
