@@ -175,6 +175,32 @@ jobs:
         
         Write-Host "SUCCESS: EXE created successfully!"
         dir target/CTBDepotManagement.exe
+
+    - name: Build self-contained Windows installer
+      run: |
+        New-Item -ItemType Directory -Force -Path installer | Out-Null
+        jpackage `
+          --type exe `
+          --input target `
+          --main-jar app.jar `
+          --main-class lk.bustracking.depotmanagementsystem.DepotManagementSystem `
+          --name CTBDepotManagement `
+          --app-version 1.0.0 `
+          --vendor "CTB Depot Management" `
+          --description "CTB Depot Management System" `
+          --dest installer `
+          --win-menu `
+          --win-menu-group "CTB Depot Management" `
+          --win-shortcut `
+          --win-dir-chooser `
+          --win-per-user-install
+        $installer = Get-ChildItem installer -Filter "*.exe" | Select-Object -First 1
+        if (-not $installer) {
+          Write-Host "ERROR: Self-contained installer was not created"
+          exit 1
+        }
+        Write-Host "SUCCESS: Self-contained installer created"
+        $installer | Select-Object FullName, Length
     
     - name: Upload EXE Artifact (if successful)
       uses: actions/upload-artifact@v4
@@ -182,6 +208,14 @@ jobs:
       with:
         name: DepotManagementSystem-EXE
         path: target/CTBDepotManagement.exe
+        retention-days: 30
+
+    - name: Upload self-contained installer
+      uses: actions/upload-artifact@v4
+      if: success()
+      with:
+        name: CTBDepotManagement-SelfContained-Installer
+        path: installer/*.exe
         retention-days: 30
     
     - name: Upload EXE Artifact (continue if failed)
@@ -198,6 +232,7 @@ jobs:
       with:
         files: |
           target/CTBDepotManagement.exe
+          installer/*.exe
           target/app.jar
         body: |
           ## Release Notes
