@@ -29,11 +29,31 @@ jobs:
       run: |
         .\mvnw.cmd clean package -DskipTests
     
+    - name: List JAR files (Debug)
+      run: |
+        dir target/*.jar
+    
+    - name: Copy JAR for consistency
+      run: |
+        # Copy the built JAR to a consistent name
+        if (Test-Path "target/BusTrackingSystem.jar") {
+          Copy-Item "target/BusTrackingSystem.jar" "target/app.jar"
+        } elseif (Test-Path "target/bus-tracking-system-1.0.0.jar") {
+          Copy-Item "target/bus-tracking-system-1.0.0.jar" "target/app.jar"
+        } else {
+          # Use wildcard to find the jar
+          $jar = Get-ChildItem "target/*.jar" -Exclude "*sources*" -Exclude "*javadoc*" | Select-Object -First 1
+          if ($jar) {
+            Copy-Item $jar.FullName "target/app.jar"
+          }
+        }
+        dir target/app.jar
+    
     - name: Upload JAR Artifact
       uses: actions/upload-artifact@v4
       with:
         name: DepotManagementSystem-JAR
-        path: target/BusTrackingSystem.jar
+        path: target/app.jar
         retention-days: 30
     
     - name: Download Launch4j
@@ -50,8 +70,8 @@ jobs:
         <launch4jConfig>
           <dontWrapJar>false</dontWrapJar>
           <headerType>gui</headerType>
-          <jar>${{ github.workspace }}\target\BusTrackingSystem.jar</jar>
-          <outfile>${{ github.workspace }}\target\CTBDepotManagement.exe</outfile>
+          <jar>target/app.jar</jar>
+          <outfile>target/CTBDepotManagement.exe</outfile>
           <errTitle>CTB Depot Management System</errTitle>
           <cmdLine></cmdLine>
           <chdir>.</chdir>
@@ -81,14 +101,41 @@ jobs:
     
     - name: Build EXE with Launch4j
       run: |
-        .\launch4j\launch4jc.exe launch4j-config.xml
+        # Check if app.jar exists
+        if (-not (Test-Path "target/app.jar")) {
+          Write-Host "ERROR: app.jar not found!"
+          dir target/
+          exit 1
+        }
+        
+        # Run Launch4j
+        $result = & .\launch4j\launch4jc.exe launch4j-config.xml
+        Write-Host "Launch4j output: $result"
+        
+        # Check if exe was created
+        if (-not (Test-Path "target/CTBDepotManagement.exe")) {
+          Write-Host "ERROR: EXE file was not created!"
+          exit 1
+        }
+        
+        Write-Host "SUCCESS: EXE created successfully!"
+        dir target/CTBDepotManagement.exe
     
-    - name: Upload EXE Artifact
+    - name: Upload EXE Artifact (if successful)
       uses: actions/upload-artifact@v4
+      if: success()
       with:
         name: DepotManagementSystem-EXE
         path: target/CTBDepotManagement.exe
         retention-days: 30
+    
+    - name: Upload EXE Artifact (continue if failed)
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: DepotManagementSystem-EXE-DEBUG
+        path: launch4j-config.xml
+        retention-days: 7
     
     - name: Create GitHub Release (on tag)
       uses: softprops/action-gh-release@v1
@@ -96,7 +143,7 @@ jobs:
       with:
         files: |
           target/CTBDepotManagement.exe
-          target/BusTrackingSystem.jar
+          target/app.jar
         body: |
           ## Release Notes
           
