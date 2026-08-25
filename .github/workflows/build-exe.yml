@@ -106,6 +106,24 @@ jobs:
           Write-Host "ERROR: Launch4j artifacts were not downloaded"
           exit 1
         }
+        $workdirJar = $launch4jJars | Where-Object { $_.Name -like "*workdir-win32.jar" } | Select-Object -First 1
+        if (-not $workdirJar) {
+          Write-Host "ERROR: Launch4j Windows workdir artifact was not downloaded"
+          exit 1
+        }
+        $workdirExtract = "launch4j-workdir"
+        Remove-Item $workdirExtract -Recurse -Force -ErrorAction SilentlyContinue
+        $workdirZip = "launch4j-workdir.zip"
+        Copy-Item $workdirJar.FullName $workdirZip -Force
+        Expand-Archive -Path $workdirZip -DestinationPath $workdirExtract
+        Remove-Item $workdirZip -Force
+        $workdirRoot = Get-ChildItem $workdirExtract -Directory | Select-Object -First 1
+        Copy-Item "$($workdirRoot.FullName)\*" "launch4j-lib" -Recurse -Force
+        if (-not (Test-Path "launch4j-lib\bin\windres.exe")) {
+          Write-Host "ERROR: windres.exe was not extracted"
+          Get-ChildItem launch4j-lib -Recurse | Select-Object FullName
+          exit 1
+        }
         $launch4jJars | Select-Object Name, Length
     
     - name: Create Launch4j Config
