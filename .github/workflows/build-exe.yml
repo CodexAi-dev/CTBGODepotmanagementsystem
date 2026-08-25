@@ -22,6 +22,18 @@ jobs:
         distribution: 'oracle'
         cache: maven
     
+    - name: Setup JAVA_HOME
+      run: |
+        $javaDir = (Get-Command java.exe).Source | Split-Path | Split-Path
+        if (-not (Test-Path "$javaDir\bin\javac.exe")) {
+          $javaHome = (Get-ItemProperty 'HKEY_LOCAL_MACHINE\SOFTWARE\JavaSoft\JDK\21*' JavaHome -ErrorAction SilentlyContinue).JavaHome | Select-Object -First 1
+          if ($javaHome) {
+            $javaDir = $javaHome
+          }
+        }
+        echo "JAVA_HOME=$javaDir" >> $env:GITHUB_ENV
+        Write-Host "Set JAVA_HOME to: $javaDir"
+    
     - name: Display Java version
       run: java -version
     
@@ -38,6 +50,8 @@ jobs:
         # Copy the built JAR to a consistent name
         if (Test-Path "target/BusTrackingSystem.jar") {
           Copy-Item "target/BusTrackingSystem.jar" "target/app.jar"
+        } elseif (Test-Path "target/DepotManagementSystem.jar") {
+          Copy-Item "target/DepotManagementSystem.jar" "target/app.jar"
         } elseif (Test-Path "target/bus-tracking-system-1.0.0.jar") {
           Copy-Item "target/bus-tracking-system-1.0.0.jar" "target/app.jar"
         } else {
