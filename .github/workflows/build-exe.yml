@@ -36,13 +36,67 @@ jobs:
         path: target/BusTrackingSystem.jar
         retention-days: 30
     
+    - name: Download Launch4j
+      run: |
+        $url = "https://sourceforge.net/projects/launch4j/files/launch4j-3/launch4j-3.50-win64.zip/download"
+        $output = "launch4j.zip"
+        Invoke-WebRequest -Uri $url -OutFile $output
+        Expand-Archive -Path $output -DestinationPath .
+        Remove-Item $output
+    
+    - name: Create Launch4j Config
+      run: |
+        @'
+        <launch4jConfig>
+          <dontWrapJar>false</dontWrapJar>
+          <headerType>gui</headerType>
+          <jar>${{ github.workspace }}\target\BusTrackingSystem.jar</jar>
+          <outfile>${{ github.workspace }}\target\CTBDepotManagement.exe</outfile>
+          <errTitle>CTB Depot Management System</errTitle>
+          <cmdLine></cmdLine>
+          <chdir>.</chdir>
+          <priority>normal</priority>
+          <downloadUrl>https://www.java.com/download</downloadUrl>
+          <supportUrl></supportUrl>
+          <stayAlive>false</stayAlive>
+          <restartOnCrash>false</restartOnCrash>
+          <jre>
+            <path></path>
+            <bundledJre64Bit>false</bundledJre64Bit>
+            <bundledJreAsFallback>false</bundledJreAsFallback>
+            <minVersion>21</minVersion>
+            <maxVersion></maxVersion>
+            <jdkPreference>preferJre</jdkPreference>
+            <runtimeBits>64</runtimeBits>
+          </jre>
+          <messages>
+            <startupErr>An error occurred while starting the application.</startupErr>
+            <bundledJreErr>This application was configured to use a bundled Java Runtime Environment but the runtime is missing or corrupted.</bundledJreErr>
+            <jreVersionErr>The current version of Java on your computer is too old for this application. Please install Java 21 or later.</jreVersionErr>
+            <launcherErr>The registry refers to a nonexistent Java Runtime Environment installation or the runtime is corrupted.</launcherErr>
+            <instanceAlreadyExistsMsg>An application instance is already running. Only one instance of the application can run at a time.</instanceAlreadyExistsMsg>
+          </messages>
+        </launch4jConfig>
+        '@ | Out-File -FilePath launch4j-config.xml -Encoding UTF8
+    
+    - name: Build EXE with Launch4j
+      run: |
+        .\launch4j\launch4jc.exe launch4j-config.xml
+    
+    - name: Upload EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: DepotManagementSystem-EXE
+        path: target/CTBDepotManagement.exe
+        retention-days: 30
+    
     - name: Create GitHub Release (on tag)
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
+          target/CTBDepotManagement.exe
           target/BusTrackingSystem.jar
-          target/DepotManagementSystem.jar
         body: |
           ## Release Notes
           
@@ -50,13 +104,46 @@ jobs:
           **Build Date:** ${{ github.event.head_commit.timestamp }}
           **Commit:** ${{ github.event.head_commit.message }}
           
-          ### Files
-          - `BusTrackingSystem.jar` - Executable JAR (includes all dependencies)
-          - `DepotManagementSystem.jar` - Alternative assembly JAR
+          ### Download Options
           
-          ### Installation Instructions
-          1. Download the JAR file
-          2. Install Java 21 from https://www.oracle.com/java/technologies/
+          #### Windows EXE (Recommended) ✅
+          - **File:** `CTBDepotManagement.exe`
+          - **Size:** ~50-60 MB
+          - **Requirements:** Java 21 (installer will check)
+          - **Installation:** Just double-click to run
+          
+          #### Portable JAR
+          - **File:** `BusTrackingSystem.jar`
+          - **Size:** ~80-100 MB
+          - **Requirements:** Java 21 must be installed
+          - **Run:** `java -jar BusTrackingSystem.jar`
+          
+          ### System Requirements
+          - **OS:** Windows 7 or later
+          - **Java:** Java 21 (Oracle JDK or OpenJDK)
+          - **RAM:** 4 GB minimum
+          - **Disk:** 500 MB free space
+          
+          ### Installation Steps
+          
+          **For EXE:**
+          1. Download `CTBDepotManagement.exe`
+          2. Double-click to run
+          3. Application starts (requires Java 21)
+          
+          **For JAR:**
+          1. Install Java 21 from https://www.oracle.com/java/technologies/
+          2. Download `BusTrackingSystem.jar`
           3. Run: `java -jar BusTrackingSystem.jar`
+          
+          ### Features
+          - Real-time GPS tracking simulation
+          - Bus fleet management
+          - Employee and route management
+          - Fuel consumption tracking
+          - Dashboard analytics
+          
+          ---
+          Built with GitHub Actions on ${{ github.event.head_commit.timestamp }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
