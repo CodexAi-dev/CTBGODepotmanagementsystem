@@ -1,0 +1,72 @@
+# Maven build artifacts
+target/
+*.jar
+*.war
+*.ear
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+
+# NetBeans
+/nbproject/private/
+/nbproject/build/
+/nbproject/dist/
+build/
+nbbuild/
+nbdist/
+.nb-gradle/
+nb-configuration.xml
+
+# Gradle
+.gradle/
+build/
+
+# Compiled files
+*.class
+*.pyc
+
+# Logs
+logs/
+*.log
+*.log.*
+*.lck
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database
+*.db
+*.sqlite
+DepotDB.mdf
+DepotDB.ldf
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+temp/
+tmp/

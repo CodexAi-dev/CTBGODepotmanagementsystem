@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="shadow2" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="450" rx="12" fill="url(#bg2)"/>
+
+  <text x="450" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">HOW DATA FLOWS IN THE SYSTEM (MVC EXECUTION TRACE)</text>
+  <text x="450" y="60" font-family="Arial, sans-serif" font-size="13" fill="#94A3B8" text-anchor="middle">Example: User clicking "+ Add Bus" or "Save Record"</text>
+
+  <!-- Step 1: User / View -->
+  <rect x="40" y="90" width="160" height="120" rx="10" fill="#2563EB" filter="url(#shadow2)"/>
+  <text x="120" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1. VIEW (UI)</text>
+  <text x="120" y="150" font-family="Arial, sans-serif" font-size="11" fill="#93C5FD" text-anchor="middle">User fills form &amp;</text>
+  <text x="120" y="168" font-family="Arial, sans-serif" font-size="11" fill="#93C5FD" text-anchor="middle">clicks Save Button</text>
+  <text x="120" y="190" font-family="Arial, sans-serif" font-size="10" fill="#DBEAFE" text-anchor="middle">(BusManagementView)</text>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 200 150 L 245 150" stroke="#60A5FA" stroke-width="3"/>
+  <polygon points="255,150 243,144 243,156" fill="#60A5FA"/>
+
+  <!-- Step 2: Controller -->
+  <rect x="255" y="90" width="160" height="120" rx="10" fill="#059669" filter="url(#shadow2)"/>
+  <text x="335" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2. CONTROLLER</text>
+  <text x="335" y="150" font-family="Arial, sans-serif" font-size="11" fill="#A7F3D0" text-anchor="middle">Catches Action Event</text>
+  <text x="335" y="168" font-family="Arial, sans-serif" font-size="11" fill="#A7F3D0" text-anchor="middle">&amp; validates input</text>
+  <text x="335" y="190" font-family="Arial, sans-serif" font-size="10" fill="#D1FAE5" text-anchor="middle">(BusController)</text>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 415 150 L 460 150" stroke="#34D399" stroke-width="3"/>
+  <polygon points="470,150 458,144 458,156" fill="#34D399"/>
+
+  <!-- Step 3: Service -->
+  <rect x="470" y="90" width="160" height="120" rx="10" fill="#D97706" filter="url(#shadow2)"/>
+  <text x="550" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3. SERVICE</text>
+  <text x="550" y="150" font-family="Arial, sans-serif" font-size="11" fill="#FDE68A" text-anchor="middle">Applies Business Rules</text>
+  <text x="550" y="168" font-family="Arial, sans-serif" font-size="11" fill="#FDE68A" text-anchor="middle">&amp; checks constraints</text>
+  <text x="550" y="190" font-family="Arial, sans-serif" font-size="10" fill="#FEF3C7" text-anchor="middle">(BusService)</text>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 630 150 L 675 150" stroke="#FBBF24" stroke-width="3"/>
+  <polygon points="685,150 673,144 673,156" fill="#FBBF24"/>
+
+  <!-- Step 4: DAO -->
+  <rect x="685" y="90" width="175" height="120" rx="10" fill="#7C3AED" filter="url(#shadow2)"/>
+  <text x="772" y="125" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">4. DAO &amp; SQL</text>
+  <text x="772" y="150" font-family="Arial, sans-serif" font-size="11" fill="#DDD6FE" text-anchor="middle">Executes PreparedStatement</text>
+  <text x="772" y="168" font-family="Arial, sans-serif" font-size="11" fill="#DDD6FE" text-anchor="middle">INSERT / UPDATE</text>
+  <text x="772" y="190" font-family="Arial, sans-serif" font-size="10" fill="#EDE9FE" text-anchor="middle">(BusDAO)</text>
+
+  <!-- Down Curve Arrow to DB -->
+  <path d="M 772 210 L 772 250 Q 772 280 740 280 L 500 280" stroke="#A78BFA" stroke-width="3" fill="none"/>
+  <polygon points="490,280 502,274 502,286" fill="#A78BFA"/>
+
+  <!-- Step 5: Database -->
+  <rect x="310" y="245" width="180" height="70" rx="35" fill="#DC2626" filter="url(#shadow2)"/>
+  <text x="400" y="278" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">5. SQL SERVER DB</text>
+  <text x="400" y="298" font-family="Arial, sans-serif" font-size="11" fill="#FECACA" text-anchor="middle">DepotDB (localhost:1433)</text>
+
+  <!-- Return Flow Box -->
+  <rect x="40" y="340" width="820" height="85" rx="8" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+  <text x="60" y="368" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#38BDF8">RESPONSE FLOW &amp; UI REFRESH:</text>
+  <text x="60" y="392" font-family="Arial, sans-serif" font-size="12" fill="#E2E8F0">1. SQL Server confirms transaction success -&gt; 2. DAO returns updated entity -&gt; 3. Controller triggers View refresh -&gt;</text>
+  <text x="60" y="412" font-family="Arial, sans-serif" font-size="12" fill="#34D399">4. ObservableList&lt;Bus&gt; notifies JavaFX TableView -&gt; Screen automatically redraws with new row!</text>
+</svg>

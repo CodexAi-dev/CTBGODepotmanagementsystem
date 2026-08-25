@@ -1,0 +1,62 @@
+name: Build EXE Release
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'oracle'
+        cache: maven
+    
+    - name: Display Java version
+      run: java -version
+    
+    - name: Build with Maven
+      run: |
+        .\mvnw.cmd clean package -DskipTests
+    
+    - name: Upload JAR Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: DepotManagementSystem-JAR
+        path: target/BusTrackingSystem.jar
+        retention-days: 30
+    
+    - name: Create GitHub Release (on tag)
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          target/BusTrackingSystem.jar
+          target/DepotManagementSystem.jar
+        body: |
+          ## Release Notes
+          
+          **Version:** ${{ github.ref_name }}
+          **Build Date:** ${{ github.event.head_commit.timestamp }}
+          **Commit:** ${{ github.event.head_commit.message }}
+          
+          ### Files
+          - `BusTrackingSystem.jar` - Executable JAR (includes all dependencies)
+          - `DepotManagementSystem.jar` - Alternative assembly JAR
+          
+          ### Installation Instructions
+          1. Download the JAR file
+          2. Install Java 21 from https://www.oracle.com/java/technologies/
+          3. Run: `java -jar BusTrackingSystem.jar`
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

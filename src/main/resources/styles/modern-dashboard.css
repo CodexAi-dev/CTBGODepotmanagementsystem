@@ -1,0 +1,459 @@
+/* Modern Professional Dashboard Styles */
+/* Create this file in: src/main/resources/styles/modern-dashboard.css */
+
+/* Root color variables */
+.root {
+    -fx-font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    -ctb-primary: #1a237e;
+    -ctb-secondary: #3b82f6;
+    -ctb-success: #10b981;
+    -ctb-warning: #f59e0b;
+    -ctb-error: #ef4444;
+    -ctb-gray-50: #f9fafb;
+    -ctb-gray-100: #f3f4f6;
+    -ctb-gray-200: #e5e7eb;
+    -ctb-gray-300: #d1d5db;
+    -ctb-gray-400: #9ca3af;
+    -ctb-gray-500: #6b7280;
+    -ctb-gray-600: #374151;
+    -ctb-gray-700: #1f2937;
+    -ctb-gray-800: #111827;
+    -ctb-gray-900: #030712;
+}
+
+/* Main application styling */
+.root {
+    -fx-background-color: -ctb-gray-50;
+}
+
+/* Tab Pane Modern Styling */
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 25;
+    -fx-background-color: -ctb-gray-50;
+}
+
+.tab-pane .tab-header-area .headers-region {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-width: 0;
+    -fx-padding: 12 20 12 20;
+    -fx-cursor: hand;
+}
+
+.tab .tab-label {
+    -fx-text-fill: -ctb-gray-500;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-border-color: -ctb-gray-200 -ctb-gray-200 white -ctb-gray-200;
+    -fx-border-width: 1 1 0 1;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: -ctb-gray-800;
+}
+
+.tab:hover .tab-label {
+    -fx-text-fill: -ctb-gray-700;
+}
+
+/* Content Area */
+.tab-pane .tab-content-area {
+    -fx-background-color: white;
+    -fx-border-color: -ctb-gray-200;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-radius: 0 12 12 12;
+    -fx-padding: 0;
+}
+
+/* Charts Styling */
+.chart {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.chart-title {
+    -fx-text-fill: -ctb-gray-800;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10 0 0 0;
+}
+
+.chart-legend-item {
+    -fx-text-fill: -ctb-gray-600;
+    -fx-font-size: 11px;
+}
+
+/* Line Chart Styling */
+.chart-line-symbol {
+    -fx-background-color: -ctb-secondary;
+    -fx-background-radius: 3px;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 3px;
+}
+
+.default-color0.chart-series-line { -fx-stroke: -ctb-secondary; }
+.default-color1.chart-series-line { -fx-stroke: -ctb-success; }
+.default-color2.chart-series-line { -fx-stroke: -ctb-warning; }
+
+/* Pie Chart Styling */
+.chart-pie-label {
+    -fx-text-fill: -ctb-gray-700;
+    -fx-font-size: 10px;
+    -fx-font-weight: 500;
+}
+
+.default-color0.chart-pie { -fx-pie-color: -ctb-success; }
+.default-color1.chart-pie { -fx-pie-color: -ctb-warning; }
+.default-color2.chart-pie { -fx-pie-color: -ctb-error; }
+
+/* Scroll Pane Styling */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.7;
+    -fx-pref-width: 8;
+}
+
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-opacity: 0.7;
+    -fx-pref-height: 8;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: -ctb-gray-300;
+    -fx-background-radius: 4;
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: -ctb-gray-400;
+}
+
+/* Button Styling */
+.button {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-effect: null;
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+.button:pressed {
+    -fx-opacity: 0.8;
+}
+
+/* Alert Dialog Styling */
+.alert {
+    -fx-background-color: white;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.alert .header-panel {
+    -fx-background-color: -ctb-gray-50;
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 20;
+}
+
+.alert .content-panel {
+    -fx-padding: 20;
+    -fx-background-color: white;
+}
+
+.alert .button-bar {
+    -fx-padding: 0 20 20 20;
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 12 12;
+}
+
+/* Table View Styling (if used) */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1;
+    -fx-border-color: -ctb-gray-200;
+}
+
+.table-view .column-header {
+    -fx-background-color: -ctb-gray-50;
+    -fx-text-fill: -ctb-gray-700;
+    -fx-font-weight: 600;
+    -fx-font-size: 11px;
+    -fx-padding: 8;
+}
+
+/* Rows kept compact on purpose - the table is the primary content on these
+   screens, so more rows visible at once matters more than generous padding. */
+.table-view .table-cell {
+    -fx-text-fill: -ctb-gray-800;
+    -fx-font-size: 12px;
+    -fx-padding: 6 8;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: -ctb-gray-100;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -ctb-secondary;
+    -fx-text-fill: white;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    -fx-background-color: -ctb-gray-800;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-padding: 6 10;
+    -fx-background-radius: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+}
+
+/* Progress Indicator Styling */
+.progress-indicator {
+    -fx-progress-color: -ctb-secondary;
+    -fx-padding: 10;
+}
+
+.progress-indicator .indicator {
+    -fx-background-color: transparent;
+}
+
+/* Separator Styling */
+.separator .line {
+    -fx-border-color: -ctb-gray-200;
+    -fx-border-width: 0.5;
+}
+
+/* Custom CSS Classes for Dashboard Components */
+.kpi-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 1);
+    -fx-padding: 20 25;
+    -fx-cursor: hand;
+}
+
+.kpi-card:hover {
+    -fx-background-color: -ctb-gray-50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 2);
+}
+
+.alert-card {
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.alert-warning {
+    -fx-background-color: #fef3c7;
+    -fx-border-color: #f59e0b;
+}
+
+.alert-error {
+    -fx-background-color: #fee2e2;
+    -fx-border-color: #ef4444;
+}
+
+.alert-success {
+    -fx-background-color: #d1fae5;
+    -fx-border-color: #10b981;
+}
+
+.alert-info {
+    -fx-background-color: #dbeafe;
+    -fx-border-color: #3b82f6;
+}
+
+/* Navigation Button Styling */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d1d5db;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 8;
+    -fx-padding: 10 15;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-button:hover {
+    -fx-background-color: #374151;
+    -fx-text-fill: #f9fafb;
+}
+
+.nav-button:selected {
+    -fx-background-color: -ctb-secondary;
+    -fx-text-fill: white;
+}
+
+/* Status Indicator */
+.status-online {
+    -fx-text-fill: -ctb-success;
+}
+
+.status-warning {
+    -fx-text-fill: -ctb-warning;
+}
+
+.status-error {
+    -fx-text-fill: -ctb-error;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+    from { -fx-opacity: 0; }
+    to { -fx-opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { -fx-translate-x: 20px; -fx-opacity: 0; }
+    to { -fx-translate-x: 0px; -fx-opacity: 1; }
+}
+
+.fade-in {
+    -fx-opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.slide-in-right {
+    -fx-translate-x: 20px;
+    -fx-opacity: 0;
+    animation: slideInRight 0.3s ease-out forwards;
+}
+
+/* Responsive adjustments */
+.compact-mode .kpi-card {
+    -fx-padding: 15 20;
+}
+
+.compact-mode .chart {
+    -fx-min-height: 200;
+}
+
+/* =====================================================================
+   SHARED COMPONENT CLASSES
+   Reusable styles for buttons/cards/badges used across all management
+   screens (Bus, Route, Employee, Fuel, GPS), so screens stop repeating
+   inline .setStyle() strings and instead share one design here.
+   ===================================================================== */
+
+/* Button variants - use with button.getStyleClass().add("btn-primary") etc */
+.btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-secondary {
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+.btn-primary   { -fx-background-color: -ctb-secondary; }
+.btn-success   { -fx-background-color: -ctb-success; }
+.btn-warning   { -fx-background-color: -ctb-warning; }
+.btn-danger    { -fx-background-color: -ctb-error; }
+.btn-secondary { -fx-background-color: -ctb-gray-500; }
+
+.btn-primary:hover   { -fx-background-color: derive(-ctb-secondary, -10%); }
+.btn-success:hover   { -fx-background-color: derive(-ctb-success, -10%); }
+.btn-warning:hover   { -fx-background-color: derive(-ctb-warning, -10%); }
+.btn-danger:hover    { -fx-background-color: derive(-ctb-error, -10%); }
+.btn-secondary:hover { -fx-background-color: derive(-ctb-gray-500, -10%); }
+
+/* Combine with a variant, e.g. "btn-small btn-primary", for compact table/action buttons */
+.btn-small {
+    -fx-font-size: 10px;
+    -fx-padding: 4 8;
+    -fx-background-radius: 4;
+}
+
+/* Stat/summary card - the small white KPI boxes at the top of each screen.
+   Kept deliberately compact: these are secondary context, the table below
+   them is the important content and should get most of the vertical space. */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 1);
+    -fx-padding: 10 14;
+    -fx-cursor: hand;
+}
+.stat-card:hover {
+    -fx-background-color: -ctb-gray-50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 12, 0, 0, 2);
+}
+
+/* Section card - white rounded shadow container used for headers, table wrappers, dialog sections */
+.section-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 1);
+    -fx-padding: 12;
+}
+
+/* Status badge text - pair with the base class plus one color modifier */
+.status-badge {
+    -fx-font-weight: 600;
+    -fx-font-size: 11px;
+}
+.status-badge-success { -fx-text-fill: -ctb-success; }
+.status-badge-warning { -fx-text-fill: -ctb-warning; }
+.status-badge-danger  { -fx-text-fill: -ctb-error; }
+.status-badge-neutral { -fx-text-fill: -ctb-gray-500; }
+
+/* Small text-color helpers for stat-card values and similar accents */
+.text-success { -fx-text-fill: -ctb-success; }
+.text-warning { -fx-text-fill: -ctb-warning; }
+.text-danger  { -fx-text-fill: -ctb-error; }
+.text-info    { -fx-text-fill: -ctb-secondary; }
+.text-muted   { -fx-text-fill: -ctb-gray-500; }
+
+/* Dark mode support (optional) */
+.root.dark-mode {
+    -fx-background-color: #111827;
+}
+
+.dark-mode .tab-pane .tab-content-area {
+    -fx-background-color: #1f2937;
+    -fx-border-color: #374151;
+}
+
+.dark-mode .kpi-card {
+    -fx-background-color: #1f2937;
+}
+
+.dark-mode .alert {
+    -fx-background-color: #1f2937;
+}

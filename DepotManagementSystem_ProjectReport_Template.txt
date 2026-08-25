@@ -1,0 +1,53 @@
+Depot Management System Project Report
+
+[Title Page]
+Project Title: Depot Management System for Bus Tracking
+Name: [Your Name]
+Registration Number: [Your Registration Number]
+Course: [Course Name]
+Lecturer: [Lecturer's Name]
+Date of Submission: [Submission Date]
+
+[Abstract]
+(Write a 200–300 word summary of the project, its objectives, technologies used, and results.)
+
+[Acknowledgements]
+(Thank those who supported or guided you.)
+
+[Table of Contents]
+1. Introduction
+2. Definition of the Problem
+3. Prospective Solution
+4. Implementation
+5. Conclusion
+6. References
+Appendix: Source Code
+
+1. Introduction
+Describe the project, its purpose, and the technologies used (Java, JavaFX, Maven, SQL Server, etc.). State if it is a new project or a continuation.
+
+2. Definition of the Problem
+Explain the challenges in bus depot management and what the project aims to solve.
+
+3. Prospective Solution
+Outline your approach to solving the problem, referencing similar work if relevant.
+
+4. Implementation
+Describe the system architecture, main modules (controllers, models, views, services, DAO), and how the solution was built. Include diagrams, screenshots, and a case study. Mention Maven and other tools. State that full code is in the Appendix.
+
+5. Conclusion
+Summarize achievements, limitations, and next steps for the project.
+
+6. References
+List all sources used, numbered as [1], [2], etc.
+
+[Appendix]
+Include the complete source code or key code excerpts.
+
+[Formatting]
+- Times New Roman, 12pt font
+- 1.5 line spacing
+- Justified text
+- Normal margins
+
+[Note: Add illustrations, diagrams, and tables as needed, with titles and references.]

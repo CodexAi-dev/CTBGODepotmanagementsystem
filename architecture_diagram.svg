@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </linearGradient>
+    <linearGradient id="cardGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="500" rx="12" fill="url(#skyGrad)"/>
+
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DEPOT MANAGEMENT SYSTEM — SYSTEM ARCHITECTURE</text>
+  <text x="450" y="65" font-family="Arial, sans-serif" font-size="13" fill="#93C5FD" text-anchor="middle">Layered Model-View-Controller (MVC) Desktop Architecture</text>
+
+  <!-- Layer 1: Presentation (JavaFX UI) -->
+  <rect x="50" y="90" width="800" height="75" rx="8" fill="url(#cardGrad1)" filter="url(#shadow)"/>
+  <text x="70" y="118" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">PRESENTATION LAYER (JavaFX 13 Desktop GUI)</text>
+  <text x="70" y="142" font-family="Arial, sans-serif" font-size="12" fill="#E0F2FE">LoginView | DashboardView | BusManagementView | RouteManagementView | FuelManagementPanel | GPSTrackingPanel</text>
+
+  <!-- Down Arrow 1 -->
+  <path d="M 450 165 L 450 190" stroke="#60A5FA" stroke-width="3" stroke-dasharray="4,4" marker-end="url(#arrow)"/>
+  <polygon points="450,195 444,185 456,185" fill="#60A5FA"/>
+
+  <!-- Layer 2: Controller & Service Layer -->
+  <rect x="50" y="195" width="800" height="85" rx="8" fill="url(#cardGrad2)" filter="url(#shadow)"/>
+  <text x="70" y="223" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">CONTROLLER &amp; SERVICE LAYER (Business Logic &amp; Threading)</text>
+  <text x="70" y="247" font-family="Arial, sans-serif" font-size="12" fill="#D1FAE5">Controllers: LoginController, BusController, RouteController, DashboardController</text>
+  <text x="70" y="267" font-family="Arial, sans-serif" font-size="12" fill="#D1FAE5">Services: BusService, RouteService, EmployeeService, FuelManagementService, UserService</text>
+
+  <!-- Down Arrow 2 -->
+  <path d="M 450 280 L 450 305" stroke="#34D399" stroke-width="3" stroke-dasharray="4,4"/>
+  <polygon points="450,310 444,300 456,300" fill="#34D399"/>
+
+  <!-- Layer 3: Data Access Layer (DAO & Models) -->
+  <rect x="50" y="310" width="800" height="75" rx="8" fill="url(#cardGrad3)" filter="url(#shadow)"/>
+  <text x="70" y="338" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">DATA ACCESS LAYER (DAO &amp; JDBC Prepared Statements)</text>
+  <text x="70" y="362" font-family="Arial, sans-serif" font-size="12" fill="#FEF3C7">DAOs: BusDAO, UserDAO | Models: Bus, Route, Employee, User, FuelRecord, ActivityLog</text>
+
+  <!-- Down Arrow 3 -->
+  <path d="M 450 385 L 450 410" stroke="#FBBF24" stroke-width="3" stroke-dasharray="4,4"/>
+  <polygon points="450,415 444,405 456,405" fill="#FBBF24"/>
+
+  <!-- Layer 4: Storage & External Services -->
+  <rect x="50" y="415" width="380" height="65" rx="8" fill="url(#cardGrad4)" filter="url(#shadow)"/>
+  <text x="70" y="442" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">DATABASE STORAGE</text>
+  <text x="70" y="462" font-family="Arial, sans-serif" font-size="12" fill="#DDD6FE">Microsoft SQL Server (DepotDB via JDBC)</text>
+
+  <rect x="470" y="415" width="380" height="65" rx="8" fill="url(#cardGrad4)" filter="url(#shadow)"/>
+  <text x="490" y="442" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">EXTERNAL INTEGRATIONS</text>
+  <text x="490" y="462" font-family="Arial, sans-serif" font-size="12" fill="#DDD6FE">OpenStreetMap Leaflet JS | iText PDF | Apache POI Excel</text>
+</svg>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depot Management System - Complete Project Report</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 20mm 20mm 20mm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #1a202c;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 50px 60px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1.doc-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 24pt;
+            color: #1a365d;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        h2.section-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 16pt;
+            color: #2b6cb0;
+            border-bottom: 2px solid #cbd5e0;
+            padding-bottom: 5px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        h3.subsection-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 13pt;
+            color: #2d3748;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+        ul, ol {
+            margin-bottom: 15px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+        .report-table th {
+            background-color: #1a365d;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid #cbd5e0;
+        }
+        .report-table td {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .code-block {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9.5pt;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.4;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 30px 0;
+        }
+        @media print {
+            body {
+                background: none;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            h1, h2 {
+                page-break-after: avoid;
+            }
+            .report-table, .code-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p># COLLEGE OF TECHNOLOGY — KANDY
+## NVQ Level 5 National Diploma in Information & Communication Technology
+
+# DEPOT MANAGEMENT SYSTEM FOR BUS TRACKING
+## PROJECT REPORT
+
+- **Subject:** SOFTWARE PROGRAMMING
+- **Batch:** 2023 / 2024
+- **Project Title:** Depot Management System for Bus Tracking
+- **Purpose:** Bus Fleet, Route, Staff, Fuel & GPS Management
+- **Date of Submission:** 2025 / 2026
+- **Prepared by:** P. SAJANI SANDEEPANI
+- **Registration Number:** KY/23/ETB11/1/0007
+- **Approved by:** ___________________________ (Lecturer Signature)
+
+---
+
+## ABSTRACT
+
+The Sri Lanka Transport Board (SLTB / CTB) operates centralized bus depots nationwide, managing extensive vehicle fleets, daily route schedules, driver/conductor allocations, fuel transactions, and vehicle maintenance. Traditional depot management relies heavily on paper-based registers and fragmented spreadsheets, leading to operational bottlenecks, unmonitored fuel consumption, lost trip records, and compliance oversight.
+
+This project introduces a desktop-based **Depot Management System for Bus Tracking** built using **Java 21**, **JavaFX 13**, and **Microsoft SQL Server (DepotDB)**. Architected according to the **Model-View-Controller (MVC)** design pattern, the system establishes a modular desktop solution. Key capabilities include bus fleet registration and live health monitoring, 9-column route management, employee license tracking, fuel log recording with expense metrics, live GPS location tracking rendered via an embedded OpenStreetMap interface, and structured report exports using iText PDF and Apache POI. The system automates depot workflow, eliminates administrative error, and enhances decision-making through real-time operational visibility.
+
+---
+
+## ACKNOWLEDGEMENTS
+
+I express my sincere gratitude and appreciation to the **College of Technology, Kandy**, and the Department of Information & Communication Technology for providing the academic platform and infrastructure to execute this project.
+
+Special thanks are extended to my course lecturers and mentors for their guidance, insightful feedback, and encouragement throughout the software development life cycle. I also acknowledge my peers and family for their unwavering support during the research, implementation, and testing phases of this project.
+
+---
+
+## TABLE OF CONTENTS
+
+1. **Introduction**
+2. **Purpose of the Project & Definition of the Problem**
+- 2.1 Definition of the Problem
+- 2.2 Purpose & Objectives of the Project
+3. **Requirement Specification**
+- 3.1 Hardware Requirement Specification
+- 3.2 Software Requirement Specification
+4. **System Development Life Cycle (SDLC)**
+- 4.1 Planning & Feasibility Study (Economic, Technical, Operational)
+- 4.2 Gathering Requirements & Analysis
+- 4.3 Functional & Non-Functional Requirements
+- 4.4 System Architecture & Detailed Design (MVC, ERD, Use Case, DFD)
+- 4.5 Development Phase & Core Modules
+- 4.6 System Testing & Verification
+- 4.7 Deployment & Maintenance
+5. **Database Setup & Architecture**
+6. **Database Table Structure**
+7. **Output Screens & User Interface Architecture**
+8. **Test Cases for Depot Management System**
+9. **Conclusion & Future Scope**
+10. **References**
+- **Appendix: Core Source Code Snippets**
+
+---
+
+## 1. INTRODUCTION
+
+Public bus transport forms the primary backbone of passenger transportation in Sri Lanka. Central bus depots operated by the Ceylon Transport Board (CTB / SLTB) manage dozens to hundreds of buses, serving local, intercity, and express routes daily. Efficient depot operation requires coordinated control across multiple domains: fleet condition, preventive maintenance, driver duty rosters, license validity, fuel dispensing, and real-time tracking.
+
+The **Depot Management System for Bus Tracking** is a modern standalone Windows desktop application engineered to centralize, digitize, and automate Sri Lankan bus depot operations. Built using Java 21 and JavaFX 13 for native graphical user interface (GUI) rendering, the system connects directly to a Microsoft SQL Server database (`DepotDB`). It offers depot managers, traffic controllers, and administrative personnel an integrated dashboard for end-to-end operational control.
+
+Key modern design choices include a custom CSS design system (`modern-dashboard.css`), asynchronous database loading via JavaFX background tasks to prevent UI freezing, secure role-based permissions (`ADMIN` / `STAFF`), and automated test-driven components.
+
+---
+
+## 2. PURPOSE OF THE PROJECT & DEFINITION OF THE PROBLEM
+
+### 2.1 Definition of the Problem
+
+Conventional bus depot administration in Sri Lanka relies predominantly on physical logbooks, paper receipts, and unintegrated spreadsheets. This legacy operational mode faces critical challenges:
+
+* **Data Inefficiency:** Manual logbooks make retrieving historical maintenance logs or fuel usage tedious and prone to data loss.
+* **Fuel & Expense Untracking:** Lack of real-time monitoring leads to unauthorized fuel consumption, unmonitored mileage, and difficulty detecting fuel theft.
+* **Lack of Real-Time Visibility:** Without real-time GPS integration, station masters cannot determine exact bus locations or handle schedule delays effectively.
+* **License & Duty Compliance:** Manual rosters frequently overlook driver/conductor driving license expiration dates, risking legal non-compliance.
+* **Reporting Delays:** Calculating daily operational costs, fuel efficiency per vehicle, or route revenue requires days of manual compilation.
+
+### 2.2 Purpose & Objectives of the Project
+
+The principal objective of the Depot Management System is to eliminate manual friction by deploying an automated, reliable, and user-friendly digital system. Specific goals include:
+
+* **Automated Fleet Management:** Maintain a complete digital registry of buses, condition statuses, mileage, and scheduled service dates.
+* **Route & Schedule Control:** Define intercity and local routes, distances, estimated durations, fare structures, and operational hours.
+* **Employee & License Tracking:** Track driver, conductor, and mechanic details, EPF numbers, and enforce license expiry verification.
+* **Fuel Expense Tracking:** Log every fuel purchase (liters, fuel type, cost, station) and calculate fleet consumption metrics.
+* **Live GPS Map Tracking:** Display live bus coordinates on an interactive OpenStreetMap WebView inside the JavaFX application.
+* **Role-Based Access & Security:** Enforce secure system access via hashed credentials and role-based permissions.
+
+---
+
+## 3. REQUIREMENT SPECIFICATION
+
+### 3.1 Hardware Requirement Specification
+
+<table class="report-table"><thead><tr><th>Component</th><th>Minimum Requirement</th><th>Recommended Specification</th></tr></thead><tbody><tr><td>**Processor**</td><td>Intel Core i3 / AMD Ryzen 3 @ 2.0 GHz</td><td>Intel Core i5 / AMD Ryzen 5 @ 2.5 GHz (4+ Cores)</td></tr><tr><td>**RAM**</td><td>4 GB DDR4</td><td>8 GB DDR4 or higher</td></tr><tr><td>**Storage**</td><td>500 MB free disk space (HDD/SSD)</td><td>2 GB free disk space (NVMe SSD)</td></tr><tr><td>**Display Resolution**</td><td>1280 x 720 pixels</td><td>1920 x 1080 (Full HD)</td></tr><tr><td>**Network Interface**</td><td>100 Mbps Ethernet / Wi-Fi</td><td>1 Gbps LAN / High-speed Wi-Fi (for DB & GPS)</td></tr><tr><td>**Peripherals**</td><td>Standard Keyboard and Mouse</td><td>Standard Keyboard, Mouse, and Barcode/Thermal Printer</td></tr></tbody></table>
+
+### 3.2 Software Requirement Specification
+
+<table class="report-table"><thead><tr><th>Component</th><th>Software Name</th><th>Version / Details</th></tr></thead><tbody><tr><td>**Operating System**</td><td>Microsoft Windows 10 / 11</td><td>64-bit Edition</td></tr><tr><td>**Runtime Environment**</td><td>Java Development Kit (JDK)</td><td>Azul Zulu OpenJDK 21 (with JavaFX bundled)</td></tr><tr><td>**GUI Framework**</td><td>JavaFX Toolkit</td><td>JavaFX 13.0.2 (`javafx-controls`, `fxml`, `web`, `swing`)</td></tr><tr><td>**Database Engine**</td><td>Microsoft SQL Server</td><td>SQL Server 2019 / 2022 Express / Developer (`DepotDB`)</td></tr><tr><td>**Database Driver**</td><td>Microsoft JDBC Driver</td><td>`mssql-jdbc` 12.4.2.jre11</td></tr><tr><td>**Build Automation**</td><td>Apache Maven</td><td>Maven 3.9+ (`pom.xml` dependency management)</td></tr><tr><td>**IDE / Editor**</td><td>NetBeans IDE / IntelliJ IDEA</td><td>NetBeans IDE 25 / Apache NetBeans</td></tr><tr><td>**Libraries & Utilities**</td><td>ControlsFX, Ikonli, Logback, iText</td><td>ControlsFX 11.1.2, Ikonli FontAwesome 12.3.1, iText 5.5.13</td></tr></tbody></table>
+
+---
+
+## 4. SYSTEM DEVELOPMENT LIFE CYCLE (SDLC)
+
+The software development process followed the **Spiral SDLC Model** (Barry Boehm). The Spiral model combines iterative prototyping with systematic risk analysis and waterfall control, enabling continuous refinement of UI panels, DAO SQL queries, and database relations based on incremental testing.
+
+### 4.1 Planning & Feasibility Study
+
+A comprehensive feasibility analysis was performed across three key dimensions:
+
+* **Economic Feasibility:** Development utilizes open-source Java technologies (JavaFX, Maven, OpenJDK) and SQL Server Developer edition. The financial investment is minimal, while operational return on investment (ROI) is substantial due to eliminated paper registers and reduced fuel loss.
+* **Technical Feasibility:** Java 21 coupled with SQL Server JDBC provides high transactional reliability, thread safety, and cross-hardware stability. The team possessed strong core Java and relational database proficiency.
+* **Operational Feasibility:** The interface features high contrast, clear font sizes, intuitive icon navigation (FontAwesome), and explicit action buttons (Save, Cancel, Delete). Station clerks require minimal training.
+
+### 4.2 Gathering Requirements & Analysis
+
+Requirements were gathered through direct stakeholder interviews (Depot Managers, Route Inspectors, Depot Clerks), observation of manual depot dispatching workflows, and document analysis of existing paper trip logs and fuel bills.
+
+* **Stakeholders Identified:** Depot Manager, Bus Traffic Controller, Station Master, Fuel Station Clerk, System Administrator.
+* **Methods Employed:** Interviews, manual log sheet inspection, operational workflow mapping.
+
+### 4.3 Functional & Non-Functional Requirements
+
+<table class="report-table"><thead><tr><th>Functional Requirement</th><th>Non-Functional Requirement</th></tr></thead><tbody><tr><td>User Login with encrypted credentials and role check (`ADMIN` / `STAFF`).</td><td>Response time for table queries and filtering must be under 2 seconds.</td></tr><tr><td>CRUD operations for Bus fleet details, mileage, and condition monitoring.</td><td>UI must strictly follow modern UX design guidelines with dynamic CSS styling.</td></tr><tr><td>Route creation with start/end locations, distance, duration, and fare.</td><td>Data must be stored in ACID-compliant Microsoft SQL Server database.</td></tr><tr><td>Employee registry with driver/conductor designations and license expiry.</td><td>Application must handle database connection dropouts gracefully without crashing.</td></tr><tr><td>Fuel transaction logging with liters, cost, station, and bus link.</td><td>Password security enforced via SHA-256 hashing and 8-attempt lockout.</td></tr><tr><td>Live GPS bus location map rendered via embedded OpenStreetMap WebView.</td><td>Modular code structure adhering strictly to the MVC design pattern.</td></tr><tr><td>PDF and Excel export for fleet performance and expense summaries.</td><td>Compatibility with standard desktop resolution (1920x1080 and 1366x768).</td></tr></tbody></table>
+
+### 4.4 System Architecture & Detailed Design
+
+The software follows the **MVC (Model-View-Controller)** Architectural Pattern:
+
+<pre class="code-block"><code>lk.bustracking.depotmanagementsystem
+├── models/         # Plain data entities (Bus, Route, Employee, User, FuelRecord...)
+├── dao/            # Data Access Objects executing parameterized SQL (BusDAO, UserDAO)
+├── services/       # Business logic (BusService, RouteService, EmployeeService...)
+├── controllers/    # Event handlers connecting Views and Services
+├── views/          # JavaFX screens (BusManagementView, RouteManagementView, DashboardView...)
+├── db/             # Database.java — JDBC Connection Manager
+├── utils/          # ValidationUtils, AppLogger, UIConstants, AnimationUtils
+└── simulator/      # GPSSimulator testing utility</code></pre>
+
+#### Entity Relationship Summary
+* One `User` can perform multiple `Activity Logs` (1 : N).
+* One `Route` can be assigned to multiple `Buses` (1 : N).
+* One `Bus` can have multiple `Fuel Purchase Records` (1 : N).
+* One `Bus` can have multiple `GPS Tracking Logs` (1 : N).
+* One `Employee` (Driver) can possess multiple `Licenses` (1 : N).
+
+### 4.5 Development Phase
+
+Development proceeded in modular iterations: Database schema initialization, Model entity creation, DAO SQL layer development, Service business logic implementation, and JavaFX View layout composition using CSS tokens (`modern-dashboard.css`).
+
+### 4.6 Testing Phase
+
+Testing encompassed unit testing of services via JUnit 5, integration testing of DAO queries against SQL Server, UI validation testing via TestFX, and user scenario validation.
+
+### 4.7 Deployment & Maintenance
+
+The application is packaged into a standalone executable JAR using the Maven Shade Plugin and native installer bundles using the JPackage maven plugin. Maintenance routines include weekly database backups and automated log truncation.
+
+---
+
+## 5. DATABASE SETUP & ARCHITECTURE
+
+The application connects to Microsoft SQL Server instance hosting the database `DepotDB`. Database connections are supplied on-demand using parameterized JDBC prepared statements to prevent SQL injection vulnerabilities.
+
+* **Connection String:** `jdbc:sqlserver://localhost:1433;databaseName=DepotDB;encrypt=false`
+* **Database User:** `sa` (Configurable in `Database.java`)
+* **Isolation Level:** `TRANSACTION_READ_COMMITTED`
+* **Connection Test:** `SELECT 1` ping validation before query execution
+
+---
+
+## 6. DATABASE TABLE STRUCTURE
+
+The relational database consists of 8 core tables:
+
+### 6.1 `Users` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`user_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Unique user identifier</td></tr><tr><td>`username`</td><td>VARCHAR(50)</td><td>NOT NULL, UNIQUE</td><td>Login username</td></tr><tr><td>`password`</td><td>VARCHAR(255)</td><td>NOT NULL</td><td>SHA-256 hashed password</td></tr><tr><td>`full_name`</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>User's full name</td></tr><tr><td>`role`</td><td>VARCHAR(20)</td><td>NOT NULL</td><td>Role (`ADMIN` / `STAFF`)</td></tr><tr><td>`status`</td><td>VARCHAR(20)</td><td>DEFAULT 'ACTIVE'</td><td>Account status</td></tr><tr><td>`created_at`</td><td>DATETIME</td><td>DEFAULT GETDATE()</td><td>Record creation timestamp</td></tr></tbody></table>
+
+### 6.2 `Buses` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`bus_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Unique bus identifier</td></tr><tr><td>`bus_number`</td><td>VARCHAR(20)</td><td>NOT NULL, UNIQUE</td><td>Depot fleet number (e.g. NB-1234)</td></tr><tr><td>`registration_number`</td><td>VARCHAR(30)</td><td>NOT NULL, UNIQUE</td><td>Government registration number</td></tr><tr><td>`capacity`</td><td>INT</td><td>NOT NULL</td><td>Passenger seating capacity</td></tr><tr><td>`model`</td><td>VARCHAR(50)</td><td>NULL</td><td>Manufacturer & model</td></tr><tr><td>`manufacture_year`</td><td>INT</td><td>NULL</td><td>Year of manufacture</td></tr><tr><td>`status`</td><td>VARCHAR(20)</td><td>DEFAULT 'ACTIVE'</td><td>Status (`ACTIVE` / `MAINTENANCE` / `INACTIVE`)</td></tr><tr><td>`condition_status`</td><td>VARCHAR(20)</td><td>DEFAULT 'GOOD'</td><td>Vehicle condition (`EXCELLENT` / `GOOD` / `POOR`)</td></tr><tr><td>`current_mileage`</td><td>DOUBLE</td><td>DEFAULT 0.0</td><td>Odometer reading in kilometers</td></tr><tr><td>`last_service_date`</td><td>DATE</td><td>NULL</td><td>Date of last maintenance service</td></tr><tr><td>`next_service_due`</td><td>DATE</td><td>NULL</td><td>Date when next service is due</td></tr><tr><td>`assigned_route_id`</td><td>INT</td><td>FOREIGN KEY (`Routes`)</td><td>ID of currently assigned route</td></tr><tr><td>`purchase_cost`</td><td>DECIMAL(12,2)</td><td>DEFAULT 0.00</td><td>Bus acquisition cost in LKR</td></tr></tbody></table>
+
+### 6.3 `Routes` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`route_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Unique route identifier</td></tr><tr><td>`route_number`</td><td>VARCHAR(20)</td><td>NOT NULL, UNIQUE</td><td>Route code (e.g. Route 602)</td></tr><tr><td>`route_name`</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Route title (e.g. Kandy - Colombo)</td></tr><tr><td>`start_location`</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Origin terminal</td></tr><tr><td>`end_location`</td><td>VARCHAR(50)</td><td>NOT NULL</td><td>Destination terminal</td></tr><tr><td>`distance_km`</td><td>DOUBLE</td><td>NOT NULL</td><td>Total route length in km</td></tr><tr><td>`estimated_duration_minutes`</td><td>INT</td><td>NOT NULL</td><td>Estimated one-way travel duration</td></tr><tr><td>`route_type`</td><td>VARCHAR(30)</td><td>DEFAULT 'NORMAL'</td><td>Service type (`EXPRESS` / `INTERCITY` / `NORMAL`)</td></tr><tr><td>`fare`</td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Ticket fare in LKR</td></tr><tr><td>`operating_hours`</td><td>VARCHAR(50)</td><td>NULL</td><td>Daily schedule window (e.g. 05:00 - 22:00)</td></tr><tr><td>`status`</td><td>VARCHAR(20)</td><td>DEFAULT 'ACTIVE'</td><td>Operational status (`ACTIVE` / `INACTIVE`)</td></tr></tbody></table>
+
+### 6.4 `Employees` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`employee_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Unique staff identifier</td></tr><tr><td>`epf_number`</td><td>VARCHAR(20)</td><td>NOT NULL, UNIQUE</td><td>EPF employee number</td></tr><tr><td>`full_name`</td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Staff full name</td></tr><tr><td>`nic_number`</td><td>VARCHAR(15)</td><td>NOT NULL, UNIQUE</td><td>National Identity Card number</td></tr><tr><td>`designation`</td><td>VARCHAR(30)</td><td>NOT NULL</td><td>Designation (`DRIVER` / `CONDUCTOR` / `MECHANIC`)</td></tr><tr><td>`contact_number`</td><td>VARCHAR(15)</td><td>NULL</td><td>Phone contact</td></tr><tr><td>`joined_date`</td><td>DATE</td><td>NULL</td><td>Date of employment</td></tr><tr><td>`status`</td><td>VARCHAR(20)</td><td>DEFAULT 'ACTIVE'</td><td>Employment status</td></tr></tbody></table>
+
+### 6.5 `Employee_Licenses` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`license_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>License record ID</td></tr><tr><td>`employee_id`</td><td>INT</td><td>FOREIGN KEY (`Employees`)</td><td>Associated employee ID</td></tr><tr><td>`license_number`</td><td>VARCHAR(30)</td><td>NOT NULL</td><td>Driving/Heavy Vehicle License No</td></tr><tr><td>`license_type`</td><td>VARCHAR(30)</td><td>NOT NULL</td><td>Type (`HEAVY_VEHICLE` / `BUS` / `GENERAL`)</td></tr><tr><td>`issue_date`</td><td>DATE</td><td>NULL</td><td>Date of license issue</td></tr><tr><td>`expiry_date`</td><td>DATE</td><td>NOT NULL</td><td>Expiration date</td></tr><tr><td>`status`</td><td>VARCHAR(20)</td><td>DEFAULT 'VALID'</td><td>Status (`VALID` / `EXPIRED`)</td></tr></tbody></table>
+
+### 6.6 `FuelPurchases` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`record_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Fuel transaction ID</td></tr><tr><td>`bus_id`</td><td>INT</td><td>FOREIGN KEY (`Buses`)</td><td>Target bus ID</td></tr><tr><td>`date`</td><td>DATE</td><td>NOT NULL</td><td>Date of refueling</td></tr><tr><td>`fuel_type`</td><td>VARCHAR(20)</td><td>DEFAULT 'DIESEL'</td><td>Fuel category (`DIESEL` / `SUPER_DIESEL`)</td></tr><tr><td>`quantity_liters`</td><td>DOUBLE</td><td>NOT NULL</td><td>Volume in liters</td></tr><tr><td>`total_cost`</td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Total LKR cost</td></tr><tr><td>`driver_id`</td><td>INT</td><td>NULL</td><td>Driver receiving fuel</td></tr><tr><td>`station_name`</td><td>VARCHAR(100)</td><td>NULL</td><td>Filling station name</td></tr></tbody></table>
+
+### 6.7 `GPS_Tracking` Table
+
+<table class="report-table"><thead><tr><th>Column Name</th><th>Data Type</th><th>Constraints</th><th>Description</th></tr></thead><tbody><tr><td>`tracking_id`</td><td>INT</td><td>PRIMARY KEY, IDENTITY(1,1)</td><td>Tracking log ID</td></tr><tr><td>`bus_id`</td><td>INT</td><td>FOREIGN KEY (`Buses`)</td><td>Tracked bus ID</td></tr><tr><td>`latitude`</td><td>DOUBLE</td><td>NOT NULL</td><td>GPS Latitude coordinate</td></tr><tr><td>`longitude`</td><td>DOUBLE</td><td>NOT NULL</td><td>GPS Longitude coordinate</td></tr><tr><td>`speed`</td><td>DOUBLE</td><td>DEFAULT 0.0</td><td>Current speed in km/h</td></tr><tr><td>`timestamp`</td><td>DATETIME</td><td>DEFAULT GETDATE()</td><td>GPS ping timestamp</td></tr></tbody></table>
+
+---
+
+## 7. OUTPUT SCREENS & USER INTERFACE ARCHITECTURE
+
+The user interface is designed using JavaFX layouts (`BorderPane`, `VBox`, `GridPane`, `TableView`, `ScrollPane`) styled with `modern-dashboard.css`.
+
+* **7.1 Login View (`LoginView.java`):** Features centered card layout, username/password fields, visual password toggle, authentication progress indicator, and 8-attempt lockout safeguard.
+* **7.2 Dashboard View (`DashboardView.java`):** Features top KPI summary cards (Total Fleet, Active Routes, Total Employees, Total Fuel Cost), live database connection status badge, quick action bar, and main navigation menu.
+* **7.3 Bus Management View (`BusManagementView.java`):** Displays full bus fleet in a constrained TableView with status badges (`ACTIVE` / `MAINTENANCE` / `INACTIVE`). Includes search filter by bus number/status, '+ Add Bus' modal dialog, edit capabilities, and automatic 'Needs Attention' maintenance warnings.
+* **7.4 Route Management View (`RouteManagementView.java`):** Presents a 9-column schedule table detailing Route No, Route Name, Start, End, Distance (km), Duration (min), Route Type, Fare (LKR), Operating Hours, and Status. Includes route modal creation dialog.
+* **7.5 Employee Management View (`EmployeeManagementPanel.java`):** Lists depot staff filtered by designation (Drivers, Conductors, Mechanics). Features dedicated License Management Dialog to verify heavy vehicle license expiration dates.
+* **7.6 Fuel Management View (`FuelManagementPanel.java`):** Displays historical fuel log records table, total fuel metrics (Total Liters, Total LKR Spent, Avg Price/L), alongside BarChart consumption trends and LineChart efficiency metrics.
+* **7.7 GPS Tracking View (`GPSTrackingPanel.java`):** Embeds an interactive OpenStreetMap Leaflet interface inside JavaFX `WebView`, rendering real-time bus pins based on latitude/longitude query results from `GPS_Tracking`.
+* **7.8 Reports & Analytics View (`AnalyticsService.java`):** Provides one-click PDF export via iText PDF and Excel spreadsheet generation via Apache POI for administrative record keeping.
+
+---
+
+## 8. TEST CASES FOR DEPOT MANAGEMENT SYSTEM
+
+System testing was executed using structured test suites covering security, data entry, validation, and output generation:
+
+<table class="report-table"><thead><tr><th>Test Case ID</th><th>Description</th><th>Input Steps</th><th>Test Data</th><th>Expected Result</th><th>Status</th></tr></thead><tbody><tr><td>**TC001**</td><td>Valid Admin Login</td><td>a. Open Login Form<br>b. Enter valid credentials<br>c. Click 'Login'</td><td>Username: `admin`<br>Password: `admin123`</td><td>Authentication succeeds, main dashboard opens with admin privileges.</td><td>**PASS**</td></tr><tr><td>**TC002**</td><td>Invalid Password Login</td><td>a. Open Login Form<br>b. Enter correct user, wrong pass<br>c. Click 'Login'</td><td>Username: `admin`<br>Password: `wrongpass`</td><td>Error alert 'Invalid Credentials' displayed; login rejected.</td><td>**PASS**</td></tr><tr><td>**TC003**</td><td>Account Lockout Safeguard</td><td>a. Enter incorrect password 8 consecutive times</td><td>Username: `admin`<br>Failed Attempts: 8</td><td>Account temporarily locked for 5 minutes; button disabled.</td><td>**PASS**</td></tr><tr><td>**TC004**</td><td>Create New Bus Record</td><td>a. Open Bus Management<br>b. Click '+ Add Bus'<br>c. Submit valid form</td><td>Bus No: `NB-4521`<br>Reg No: `WP-NA-4521`<br>Capacity: 54</td><td>Bus added to SQL Server database; TableView auto-refreshes.</td><td>**PASS**</td></tr><tr><td>**TC005**</td><td>Duplicate Bus Reg Number</td><td>a. Attempt adding bus with existing registration number</td><td>Reg No: `WP-NA-4521`<br>(Already exists)</td><td>Validation alert 'Duplicate Registration Number' shown; save blocked.</td><td>**PASS**</td></tr><tr><td>**TC006**</td><td>Assign Bus to Route</td><td>a. Select bus from table<br>b. Click Edit<br>c. Select assigned route</td><td>Bus: `NB-4521`<br>Assigned Route: Route 602</td><td>Foreign key `assigned_route_id` updated in Buses table.</td><td>**PASS**</td></tr><tr><td>**TC007**</td><td>Driver License Expiry Alert</td><td>a. Open Employee Panel<br>b. Check license status dialog</td><td>Employee: Driver Jayasinghe<br>Expiry: Past Date</td><td>License status marked 'EXPIRED' in red badge.</td><td>**PASS**</td></tr><tr><td>**TC008**</td><td>Log Fuel Purchase</td><td>a. Open Fuel Panel<br>b. Click 'Log Fuel'<br>c. Submit transaction</td><td>Bus: `NB-4521`<br>Liters: 120.5<br>Cost: 41,500 LKR</td><td>Record saved to `FuelPurchases`; total fuel cost stat updated.</td><td>**PASS**</td></tr><tr><td>**TC009**</td><td>Live GPS Coordinate Fetch</td><td>a. Open GPS Tracking Panel<br>b. Select bus `NB-4521`</td><td>Lat: 7.2906<br>Lng: 80.6337</td><td>Map centers on Kandy coordinates and places bus marker.</td><td>**PASS**</td></tr><tr><td>**TC010**</td><td>Generate Fleet PDF Report</td><td>a. Open Reports Panel<br>b. Click 'Export PDF Summary'</td><td>Report Type: Fleet Summary<br>Format: PDF</td><td>PDF document generated successfully in target directory.</td><td>**PASS**</td></tr></tbody></table>
+
+---
+
+## 9. CONCLUSION & FUTURE SCOPE
+
+### 9.1 Conclusion
+
+The **Depot Management System for Bus Tracking** successfully replaces legacy paper-based bus depot operations with a unified, high-performance digital desktop system. Developed using Java 21, JavaFX 13, and Microsoft SQL Server (`DepotDB`), the system provides seamless end-to-end management of bus fleets, route schedules, driver/conductor profiles, license validity, fuel purchases, and live GPS map tracking.
+
+The system's modular MVC architecture guarantees maintainability, while centralized CSS styling delivers a modern visual experience. Automated data validation and role-based security safeguard operational integrity, delivering a powerful solution for Sri Lankan bus transport depots.
+
+### 9.2 Future Scope & Recommended Enhancements
+
+* **IoT Hardware GPS Telematics:** Integrate physical IoT GPS telematics hardware via cellular GSM modules directly into jSerialComm / REST endpoints.
+* **Salted Bcrypt Password Hashing:** Upgrade password hashing from SHA-256 to salted Bcrypt using the included `jBCrypt` dependency.
+* **HikariCP Connection Pooling:** Implement connection pooling via HikariCP to optimize multi-client database throughput.
+* **Mobile Passenger App Integration:** Develop a companion Flutter mobile application for passengers to view real-time bus arrivals.
+* **Predictive Maintenance Analytics:** Incorporate predictive maintenance algorithms analyzing mileage and service history.
+
+---
+
+## 10. REFERENCES
+
+1. Oracle Corporation. (2024). *Java SE 21 Documentation*. https://docs.oracle.com/en/java/javase/21/
+2. OpenJFX Community. (2024). *JavaFX 13 User Guide & API Specification*. https://openjfx.io/
+3. Microsoft Corporation. (2024). *Microsoft SQL Server JDBC Driver Documentation*. https://learn.microsoft.com/en-us/sql/connect/jdbc/
+4. Boehm, B. (1988). *A Spiral Model of Software Development and Enhancement*. IEEE Computer, 21(5), 61-72.
+5. Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). *Design Patterns: Elements of Reusable Object-Oriented Software*. Addison-Wesley.
+
+---
+
+## APPENDIX: CORE SOURCE CODE SNIPPETS
+
+### A.1 Application Entry Point (`DepotManagementSystem.java`)
+
+<pre class="code-block"><code>package lk.bustracking.depotmanagementsystem;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import lk.bustracking.depotmanagementsystem.db.Database;
+import lk.bustracking.depotmanagementsystem.views.LoginView;
+import java.util.logging.Logger;
+
+public class DepotManagementSystem extends Application {
+private static final Logger LOGGER = Logger.getLogger(DepotManagementSystem.class.getName());
+
+@Override
+public void start(Stage primaryStage) {
+try {
+// Initialize database connection test
+Database.initialize();
+
+// Launch Login GUI Screen
+LoginView loginView = new LoginView(primaryStage);
+Scene scene = new Scene(loginView.getView(), 1024, 650);
+
+primaryStage.setTitle("Depot Management System - Bus Tracking & Fleet Operations");
+primaryStage.setScene(scene);
+primaryStage.show();
+} catch (Exception e) {
+LOGGER.severe("Failed to launch application: " + e.getMessage());
+}
+}
+
+public static void main(String[] args) {
+launch(args);
+}
+}</code></pre>
+
+### A.2 Database Connection Manager (`Database.java`)
+
+<pre class="code-block"><code>package lk.bustracking.depotmanagementsystem.db;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class Database {
+private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DepotDB;encrypt=false";
+private static final String USER = "sa";
+private static final String PASSWORD = "6238";
+
+public static Connection getConnection() throws SQLException {
+Properties props = new Properties();
+props.put("user", USER);
+props.put("password", PASSWORD);
+props.put("loginTimeout", "10");
+props.put("trustServerCertificate", "true");
+props.put("applicationName", "DepotManagementSystem");
+
+return DriverManager.getConnection(URL, props);
+}
+}</code></pre>
+</p>
+    </div>
+</body>
+</html>

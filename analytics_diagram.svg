@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 350" width="100%" height="100%">
+  <rect width="850" height="350" rx="10" fill="#1E293B"/>
+  <text x="425" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">FLEET FUEL ANALYTICS &amp; CONSUMPTION METRICS</text>
+
+  <!-- Grid Lines -->
+  <line x1="80" y1="80" x2="780" y2="80" stroke="#334155" stroke-width="1"/>
+  <line x1="80" y1="130" x2="780" y2="130" stroke="#334155" stroke-width="1"/>
+  <line x1="80" y1="180" x2="780" y2="180" stroke="#334155" stroke-width="1"/>
+  <line x1="80" y1="230" x2="780" y2="230" stroke="#334155" stroke-width="1"/>
+  <line x1="80" y1="280" x2="780" y2="280" stroke="#475569" stroke-width="2"/>
+
+  <!-- Y Axis Labels -->
+  <text x="65" y="85" font-family="Arial, sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">400 L</text>
+  <text x="65" y="135" font-family="Arial, sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">300 L</text>
+  <text x="65" y="185" font-family="Arial, sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">200 L</text>
+  <text x="65" y="235" font-family="Arial, sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">100 L</text>
+  <text x="65" y="285" font-family="Arial, sans-serif" font-size="11" fill="#94A3B8" text-anchor="end">0 L</text>
+
+  <!-- Bar 1 (Monday) -->
+  <rect x="130" y="120" width="50" height="160" rx="4" fill="#3B82F6"/>
+  <text x="155" y="112" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#60A5FA" text-anchor="middle">320L</text>
+  <text x="155" y="305" font-family="Arial, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">Mon</text>
+
+  <!-- Bar 2 (Tuesday) -->
+  <rect x="250" y="150" width="50" height="130" rx="4" fill="#3B82F6"/>
+  <text x="275" y="142" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#60A5FA" text-anchor="middle">260L</text>
+  <text x="275" y="305" font-family="Arial, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">Tue</text>
+
+  <!-- Bar 3 (Wednesday) -->
+  <rect x="370" y="90" width="50" height="190" rx="4" fill="#3B82F6"/>
+  <text x="395" y="82" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#60A5FA" text-anchor="middle">380L</text>
+  <text x="395" y="305" font-family="Arial, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">Wed</text>
+
+  <!-- Bar 4 (Thursday) -->
+  <rect x="490" y="135" width="50" height="145" rx="4" fill="#3B82F6"/>
+  <text x="515" y="127" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#60A5FA" text-anchor="middle">290L</text>
+  <text x="515" y="305" font-family="Arial, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">Thu</text>
+
+  <!-- Bar 5 (Friday) -->
+  <rect x="610" y="105" width="50" height="175" rx="4" fill="#3B82F6"/>
+  <text x="635" y="97" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#60A5FA" text-anchor="middle">350L</text>
+  <text x="635" y="305" font-family="Arial, sans-serif" font-size="12" fill="#CBD5E1" text-anchor="middle">Fri</text>
+
+  <!-- Efficiency Line (km/L) -->
+  <path d="M 155 170 L 275 190 L 395 140 L 515 180 L 635 150" stroke="#10B981" stroke-width="3" fill="none"/>
+  <circle cx="155" cy="170" r="5" fill="#10B981"/>
+  <circle cx="275" cy="190" r="5" fill="#10B981"/>
+  <circle cx="395" cy="140" r="5" fill="#10B981"/>
+  <circle cx="515" cy="180" r="5" fill="#10B981"/>
+  <circle cx="635" cy="150" r="5" fill="#10B981"/>
+
+  <!-- Legend -->
+  <rect x="690" y="100" width="15" height="15" fill="#3B82F6"/>
+  <text x="715" y="113" font-family="Arial, sans-serif" font-size="11" fill="#E2E8F0">Fuel Liters</text>
+  <line x1="690" y1="135" x2="705" y2="135" stroke="#10B981" stroke-width="3"/>
+  <text x="715" y="139" font-family="Arial, sans-serif" font-size="11" fill="#E2E8F0">Efficiency Line</text>
+</svg>
