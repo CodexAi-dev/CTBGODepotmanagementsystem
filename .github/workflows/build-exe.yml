@@ -36,13 +36,14 @@ jobs:
         path: target/BusTrackingSystem.jar
         retention-days: 30
     
-    - name: Download Launch4j
+    - name: Install Launch4j
       run: |
-        $url = "https://sourceforge.net/projects/launch4j/files/launch4j-3/launch4j-3.50-win64.zip/download"
-        $output = "launch4j.zip"
-        Invoke-WebRequest -Uri $url -OutFile $output
-        Expand-Archive -Path $output -DestinationPath .
-        Remove-Item $output
+        choco install launch4j --yes --no-progress
+        $launch4jExe = Get-ChildItem "C:\ProgramData\chocolatey\lib" -Recurse -Filter launch4jc.exe | Select-Object -First 1 -ExpandProperty FullName
+        if (-not $launch4jExe) {
+          throw "launch4jc.exe was not found after installing Launch4j"
+        }
+        "LAUNCH4J_EXE=$launch4jExe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
     
     - name: Create Launch4j Config
       run: |
@@ -81,7 +82,7 @@ jobs:
     
     - name: Build EXE with Launch4j
       run: |
-        .\launch4j\launch4jc.exe launch4j-config.xml
+        & "$env:LAUNCH4J_EXE" launch4j-config.xml
     
     - name: Upload EXE Artifact
       uses: actions/upload-artifact@v4
